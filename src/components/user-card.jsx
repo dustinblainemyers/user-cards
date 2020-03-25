@@ -9,9 +9,14 @@ class UserCard extends Component {
         const response = await fetch('https://randomuser.me/api/?results=1');
         const data = await response.json();
         console.log("user data", data)
-        data.results.map(entry => 
-          console.log("first name" ,entry.name.first)
-          )  
+        let firstName, lastName, address, password;
+        data.results.map(entry =>  {
+          firstName = entry.name.first
+          lastName = entry.name.last
+
+        })  
+        console.log("first name", firstName);
+        console.log("last name", lastName)
         
         this.setState({
           userData: data.results.name
@@ -32,7 +37,8 @@ class UserCard extends Component {
     return (
       <div>
         <p>user data is ...</p>
-        <p> {userData}</p>
+     
+        <p> test {this.firstName}</p>
       </div>
     );
   }
