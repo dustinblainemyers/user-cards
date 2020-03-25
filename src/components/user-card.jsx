@@ -10,9 +10,9 @@ class UserCard extends Component {
         const data = await response.json();
         console.log("data is ", data)
         
-        // this.setState({
-        //   userData: data
-        // })
+        this.setState({
+          userData: data
+        })
         
 
 
