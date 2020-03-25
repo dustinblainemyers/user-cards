@@ -25,7 +25,7 @@ class UserCard extends Component {
         
     }
   render() {
-      const {UserCard} = this.state;
+      const {userData} = this.state;
     return (
       <div>
         <p>user data is ...</p>
