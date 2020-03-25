@@ -19,7 +19,7 @@ class UserCard extends Component {
         console.log("last name", lastName)
         
         this.setState({
-          userData: data.results.name
+          userData.name: data.results.name
         })
         
 
