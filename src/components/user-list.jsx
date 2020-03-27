@@ -10,7 +10,7 @@ const UserCardList = props => {
       {userData.length > 0 ? (
         userData.map((user,index) => (
           <li className="ProfileCard" key={index}>
-            <UserCard/>
+            <UserCard user={user}/>
           </li>
         ))
       ) : (
