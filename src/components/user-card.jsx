@@ -51,9 +51,10 @@ class UserCard extends Component {
       
     return (
       <div>
-        <p>user data is ...</p>
+        
      
-        <p> test {this.state.firstName}</p>
+        <p> {this.state.firstName}</p>
+        <img src={this.state.picture} alt="A random user"/>
       </div>
     );
   }
