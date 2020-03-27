@@ -23,36 +23,37 @@ class UserCard extends Component {
         const response = await fetch('https://randomuser.me/api/?results=1');
         const data = await response.json();
         console.log("user data", data)
-        let firstName, lastName, address, password;
-        data.results.map(entry =>  {
-          firstName = entry.name.first
-          lastName = entry.name.last
+        
+        data.results.forEach(entry =>  {
+          this.setState( {
+
+            firstName : entry.name.first,
+            lastName : entry.name.last,
+            picture : entry.picture.medium,
+          })
+          
 
         })  
-        console.log("first name", firstName);
-        console.log("last name", lastName)
         
-        this.setState({
-          userData.name = data.results.name
-        })
         
+       
 
 
       } catch (error) {
           this.setState({
-            userData: error.message
+            error: error.message
           })
 
       }
         
     }
   render() {
-      const {userData} = this.state;
+      
     return (
       <div>
         <p>user data is ...</p>
      
-        <p> test {this.firstName}</p>
+        <p> test {this.state.firstName}</p>
       </div>
     );
   }
