@@ -1,63 +1,53 @@
 import React, { Component } from "react";
 
 class UserCard extends Component {
-  constructor(props, context) {
-    super(props, context)
-    this.state = {
-      firstName: '',
-      lastName: '',
-      picture: '',
-      email: '' ,
-      phone: '' ,
-      password: '' ,
-      birthday: '' ,
-      address: '' 
-      
+
+
+    state = {
+        imgURL: " ", 
+        firstname: " ",
+        lastname: " ", 
+        location: " ",
+        username: " ", 
+        email: " "
     }
-  };
-  
-    
-  
-    async componentDidMount() {
-       try {
-        const response = await fetch('https://randomuser.me/api/?results=1');
-        const data = await response.json();
-        console.log("user data", data)
-        
-        data.results.forEach(entry =>  {
-          this.setState( {
 
-            firstName : entry.name.first,
-            lastName : entry.name.last,
-            picture : entry.picture.medium,
-          })
-          
+    async componentDidMount(){
+        try{
+            const response = await fetch('https://randomuser.me/api/')
+            const data = await response.json();
+            console.log(data)
+            this.setState({
+                imgURL: data.results[0].picture.large,
+                firstname: data.results[0].name.first, 
+                lastname: data.results[0].name.last,
+                location: data.results[0].location.street.number + " " + data.results[0].location.street.name + " " + data.results[0].location.city + ", " + data.results[0].location.state + " " + data.results[0].location.country,
+                username: data.results[0].login.username, 
+                email: data.results[0].email
 
-        })  
-        
-        
-       
-
-
-      } catch (error) {
-          this.setState({
-            error: error.message
-          })
-
-      }
-        
+              })
+        } catch (error){
+            return error 
+        }
     }
-  render() {
-      
-    return (
-      <div>
-        
-     
-        <p> {this.state.firstName}</p>
-        <img src={this.state.picture} alt="A random user"/>
-      </div>
-    );
-  }
+
+    render(){
+        const { imgURL } = this.state;
+        const { firstname } = this.state; 
+        const { lastname } = this.state;
+        const { location } = this.state;
+        const { username } = this.state;
+        const { email} = this.state; 
+       return (
+        <div className='usercard'> 
+            <img src={imgURL}/>
+            <p> {firstname} {lastname} </p>
+            <p> {location} </p>
+            <p> {username} </p>
+            <p> {email} </p>
+       </div>
+       )
+    }
 }
 
 

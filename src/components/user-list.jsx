@@ -1,18 +1,23 @@
+  
 import React from 'react';
-import UserCard from './components/user-card';
-import './App.css';
+import UserCard from './user-card';
 
 
-function App() {
+const UserCardList = props => {
+  const { userData } = props;
   return (
-    <div className="App">
-      <header className="App-header">
-       
-      </header>
-
-      <UserCard/>
-    </div>
+    <ul className="UserCardList">
+      {userData.length > 0 ? (
+        userData.map((user,index) => (
+          <li className="ProfileCard" key={index}>
+            <UserCard/>
+          </li>
+        ))
+      ) : (
+        <li>No User Data</li>
+      )}
+    </ul>
   );
-}
+};
 
-export default App;
+export default UserCardList;
